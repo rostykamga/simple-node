@@ -1,0 +1,23 @@
+language: node_js
+node_js: 
+    - 13
+services:
+    - docker
+    
+#pre-testing installs
+install:
+    - echo "Nothing needs to be installed"
+
+#Script to be run such as test
+before_script:
+    -echo "No tests"
+script:
+    - docker --version
+    - docker build -t simple-node .
+    - docker tag simple-node rostykamga/simple-node:latest
+
+# Tasks to perform after the process is successful. 
+after_success:
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" -- password-stdin
+    - docker push rostykamga/simple-node
+
