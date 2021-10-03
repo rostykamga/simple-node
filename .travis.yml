@@ -10,7 +10,7 @@ install:
 
 #Script to be run such as test
 before_script:
-    -echo "No tests"
+    - echo "No tests"
 script:
     - docker --version
     - docker build -t simple-node .
